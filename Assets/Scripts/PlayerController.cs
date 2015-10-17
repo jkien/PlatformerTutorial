@@ -16,9 +16,12 @@ public class PlayerController : MonoBehaviour {
 
 	private bool DoubleJumped;
 
+	private Animator anim;
+
 	// Use this for initialization
 	void Start () {
-	
+		//this will get the animator that is assigned to the player
+		anim = GetComponent<Animator> ();
 	}
 
 	// this updates at a fixed interval
@@ -34,6 +37,8 @@ public class PlayerController : MonoBehaviour {
 		{
 			DoubleJumped = false;
 		}
+
+		anim.SetBool ("Grounded", Grounded);
 
 		//code to jump
 		if (Input.GetKeyDown(KeyCode.Space) && Grounded) 
@@ -60,6 +65,17 @@ public class PlayerController : MonoBehaviour {
 			GetComponent<Rigidbody2D>().velocity = new Vector2(-MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
 		}
 
+		//created a float on the animator and we're accessing it here
+		anim.SetFloat ("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
+
+		if (GetComponent<Rigidbody2D> ().velocity.x > 0) {
+			//localScale is the size of the player
+			transform.localScale = new Vector3 (1f, 1f, 1f);
+		} 
+		else if (GetComponent<Rigidbody2D> ().velocity.x < 0) {
+			//this will shrink the player until it is flipped
+			transform.localScale = new Vector3 (-1f, 1f, 1f);
+		}
 	}
 
 	public void Jump()
