@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour {
 		StartCoroutine("RespawnPlayerCo");
 	}
 
-	//a coroutine runs on it's own timeloop
+	//a coroutine runs on it's own timeloop, need to do this to use the wait for seconds i think
 	public IEnumerator RespawnPlayerCo()
 	{
 		//create game object need position and rotation
