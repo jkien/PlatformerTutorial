@@ -11,6 +11,8 @@ public class LevelManager : MonoBehaviour {
 	public GameObject DeathParticle;
 	public GameObject RespawnParticle;
 
+	public int PointPenaltyOnDeath;
+
 	//used to delay time between death and respawn
 	public float RespawnDelay;
 	
@@ -40,6 +42,11 @@ public class LevelManager : MonoBehaviour {
 
 		//hide the player
 		Player.GetComponent<Renderer>().enabled = false;
+
+		//this is so the camera will also stop when a player dies
+		Player.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+
+		ScoreManager.AddPoints (-PointPenaltyOnDeath);
 
 		Debug.Log("Player Respawn");
 

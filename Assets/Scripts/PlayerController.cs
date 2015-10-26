@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float MoveSpeed;
+	private float MoveVelocity;
 	public float JumpHeight;
 
 	//this is a point in space, used to see if player is on the ground
@@ -53,17 +54,23 @@ public class PlayerController : MonoBehaviour {
 			DoubleJumped = true;
 		}
 
+		MoveVelocity = 0f;
+
 		//move right
 		if (Input.GetKey(KeyCode.D)) 
 		{
-			GetComponent<Rigidbody2D>().velocity = new Vector2(MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+			//GetComponent<Rigidbody2D>().velocity = new Vector2(MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+			MoveVelocity = MoveSpeed;
 		}
 
 		//move left
 		if (Input.GetKey(KeyCode.A)) 
 		{
-			GetComponent<Rigidbody2D>().velocity = new Vector2(-MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+			//GetComponent<Rigidbody2D>().velocity = new Vector2(-MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+			MoveVelocity = -MoveSpeed;
 		}
+
+		GetComponent<Rigidbody2D>().velocity = new Vector2(MoveVelocity, GetComponent<Rigidbody2D>().velocity.y);
 
 		//created a float on the animator and we're accessing it here
 		anim.SetFloat ("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
