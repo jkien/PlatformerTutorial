@@ -19,4 +19,10 @@ public class DestroyFinishedParticle : MonoBehaviour {
 		Destroy (gameObject);
 	}
 
+
+	//if a particle effect goes off the screen, destroy it
+	void OnBecameInvisible()
+	{
+		Destroy (gameObject);
+	}
 }
