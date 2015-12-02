@@ -13,14 +13,18 @@ public class LevelManager : MonoBehaviour {
 
 	public int PointPenaltyOnDeath;
 
+	private CameraController camera;
+
 	//used to delay time between death and respawn
 	public float RespawnDelay;
 
-	private float GravityStore;
+	//private float GravityStore;
 
 	// Use this for initialization
 	void Start () {
 		Player = FindObjectOfType<PlayerController>();
+
+		camera = FindObjectOfType<CameraController>();
 	}
 	
 	// Update is called once per frame
@@ -45,11 +49,13 @@ public class LevelManager : MonoBehaviour {
 		//hide the player
 		Player.GetComponent<Renderer>().enabled = false;
 
+		camera.isFollowing = false;
+
 		//if the player dies by falling off, we stop things like the camera from falling by setting 0 gravity
-		Player.GetComponent<Rigidbody2D> ().gravityScale = 0f;
+		//Player.GetComponent<Rigidbody2D> ().gravityScale = 0f;
 
 		//this is so the camera will also stop when a player dies
-		Player.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+		//Player.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 
 		ScoreManager.AddPoints (-PointPenaltyOnDeath);
 
@@ -59,12 +65,15 @@ public class LevelManager : MonoBehaviour {
 		yield return new WaitForSeconds(RespawnDelay);
 
 		//after the player respawns change the gravity back
-		Player.GetComponent<Rigidbody2D> ().gravityScale = 5f;
+		//Player.GetComponent<Rigidbody2D> ().gravityScale = 5f;
 
+		//bring the player back
 		Player.transform.position = CurrentCheckPoint.transform.position;
 
 		Player.enabled = true;
 		Player.GetComponent<Renderer>().enabled = true;
+
+		camera.isFollowing = true;
 		
 		Instantiate(RespawnParticle, CurrentCheckPoint.transform.position, CurrentCheckPoint.transform.rotation);
 	}
