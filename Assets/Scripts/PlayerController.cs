@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour {
 	public Transform firePoint;
 	public GameObject ninjaStar;
 
+	public float shotDelay;
+	private float shotDelayCounter;
+
 	// Use this for initialization
 	void Start () {
 		//this will get the animator that is assigned to the player
@@ -89,6 +92,20 @@ public class PlayerController : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.Return)) {
 			Instantiate(ninjaStar, firePoint.position, firePoint.rotation);
+			shotDelayCounter = shotDelay;
+		}
+
+		//check if key is being held down
+		if (Input.GetKey (KeyCode.Return)) {
+			//count down
+
+			shotDelayCounter -= Time.deltaTime;
+
+			if(shotDelayCounter <= 0)
+			{
+				shotDelayCounter = shotDelay;
+				Instantiate(ninjaStar, firePoint.position, firePoint.rotation);
+			}
 		}
 	}
 

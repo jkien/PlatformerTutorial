@@ -20,11 +20,15 @@ public class LevelManager : MonoBehaviour {
 
 	//private float GravityStore;
 
+	public HealthManager healthManager;
+
 	// Use this for initialization
 	void Start () {
 		Player = FindObjectOfType<PlayerController>();
 
 		camera = FindObjectOfType<CameraController>();
+
+		healthManager = FindObjectOfType<HealthManager> ();
 	}
 	
 	// Update is called once per frame
@@ -72,6 +76,10 @@ public class LevelManager : MonoBehaviour {
 
 		Player.enabled = true;
 		Player.GetComponent<Renderer>().enabled = true;
+
+		//reset player health
+		healthManager.FullHealth ();
+		healthManager.isDead = false;
 
 		camera.isFollowing = true;
 		
