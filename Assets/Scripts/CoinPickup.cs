@@ -5,6 +5,8 @@ public class CoinPickup : MonoBehaviour {
 
 	public int PointsToAdd;
 
+	public AudioSource coinSoundEffect;
+
 	void OnTriggerEnter2D (Collider2D other)
 	{
 		//if the other does not have the component of PlayerController
@@ -12,6 +14,8 @@ public class CoinPickup : MonoBehaviour {
 			return;
 
 		ScoreManager.AddPoints (PointsToAdd);
+
+		coinSoundEffect.Play ();
 
 		Destroy (gameObject);
 	}

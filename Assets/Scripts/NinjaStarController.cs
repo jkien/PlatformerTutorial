@@ -41,10 +41,13 @@ public class NinjaStarController : MonoBehaviour {
 //			Instantiate(enemyDeathEffect, other.transform.position, other.transform.rotation);
 //			Destroy(other.gameObject);
 //			ScoreManager.AddPoints(pointsForKill);
-			other.GetComponent<EnemyHealthManager>().giveDamage(damageToGive);
+			other.GetComponent<EnemyHealthManager> ().giveDamage (damageToGive);
 		}
+		//modified from tutorial, so that we only do the impact effect if it is not hitting an enemy
+		else {
 
-		Instantiate (impactEffect, transform.position, transform.rotation);
+			Instantiate (impactEffect, transform.position, transform.rotation);
+		}
 		Destroy (gameObject);
 	}
 }
