@@ -63,6 +63,7 @@
 'Assets/Scripts/EnemyHealthManager.cs'
 'Assets/Scripts/EnemyPatrol.cs'
 'Assets/Scripts/HealthManager.cs'
+'Assets/Scripts/HurtEnemyOnContact.cs'
 'Assets/Scripts/HurtPlayerOnContact.cs'
 'Assets/Scripts/KillPlayer.cs'
 'Assets/Scripts/LevelManager.cs'

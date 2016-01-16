@@ -74,6 +74,9 @@ public class LevelManager : MonoBehaviour {
 		//bring the player back
 		Player.transform.position = CurrentCheckPoint.transform.position;
 
+		//reset knockback when respawn
+		Player.knockbackCount = 0;
+
 		Player.enabled = true;
 		Player.GetComponent<Renderer>().enabled = true;
 

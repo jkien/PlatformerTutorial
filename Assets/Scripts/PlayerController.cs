@@ -25,6 +25,12 @@ public class PlayerController : MonoBehaviour {
 	public float shotDelay;
 	private float shotDelayCounter;
 
+	public float knockback;
+	public float knockbackLength;
+	//seconds that the player is being knocked back for
+	public float knockbackCount;
+	public bool knockFromRight;
+
 	// Use this for initialization
 	void Start () {
 		//this will get the animator that is assigned to the player
@@ -76,7 +82,24 @@ public class PlayerController : MonoBehaviour {
 			MoveVelocity = -MoveSpeed;
 		}
 
-		GetComponent<Rigidbody2D>().velocity = new Vector2(MoveVelocity, GetComponent<Rigidbody2D>().velocity.y);
+		//if the player is not being knocked back, then you can move
+		if (knockbackCount <= 0) 
+		{
+			GetComponent<Rigidbody2D> ().velocity = new Vector2 (MoveVelocity, GetComponent<Rigidbody2D> ().velocity.y);
+		} 
+		else 
+		{
+			//enemy is on right, knock player to the left
+			if(knockFromRight)
+			{
+				GetComponent<Rigidbody2D> ().velocity = new Vector2(-knockback, knockback);
+			}
+			else
+			{
+				GetComponent<Rigidbody2D> ().velocity = new Vector2(knockback, knockback);
+			}
+			knockbackCount -= Time.deltaTime;
+		}
 
 		//created a float on the animator and we're accessing it here
 		anim.SetFloat ("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));

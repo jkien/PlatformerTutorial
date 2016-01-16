@@ -23,6 +23,20 @@ public class HurtPlayerOnContact : MonoBehaviour {
 		{
 			HealthManager.HurtPlayer(damageToGive);
 			other.GetComponent<AudioSource>().Play();
+
+			//get player
+			var player = other.GetComponent<PlayerController>();
+			player.knockbackCount = player.knockbackLength;
+
+			//if the other object, player, has a position of x less than the enemy than it is on the enemy's left
+			if(other.transform.position.x < transform.position.x)
+			{
+				player.knockFromRight = true;
+			}
+			else
+			{
+				player.knockFromRight = false;
+			}
 		}
 	}
 }
