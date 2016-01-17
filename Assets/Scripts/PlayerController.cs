@@ -130,6 +130,15 @@ public class PlayerController : MonoBehaviour {
 				Instantiate(ninjaStar, firePoint.position, firePoint.rotation);
 			}
 		}
+
+		if (anim.GetBool("Sword"))
+			anim.SetBool("Sword", false);
+
+		if (Input.GetKey (KeyCode.L)) 
+		{
+			anim.SetBool("Sword", true);
+
+		}
 	}
 
 	public void Jump()
