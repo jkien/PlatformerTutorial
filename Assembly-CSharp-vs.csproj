@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\HurtEnemyOnContact.cs" />
      <Compile Include="Assets\Scripts\HurtPlayerOnContact.cs" />
      <Compile Include="Assets\Scripts\KillPlayer.cs" />
+     <Compile Include="Assets\Scripts\LevelLoader.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\NinjaStarController.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
